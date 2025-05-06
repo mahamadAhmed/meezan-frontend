@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://mahamadAhmed.github.io/meezan-frontend",
+  "description": "A Vite + React + TypeScript + Tailwind CSS + Radix UI + Shadcn UI + TanStack Query + Zod + ESLint + Prettier + Husky + Lint-Staged template",
+  "author": "Mahamad Ahmed",
+  "homepage": "https://mahamadahmed.github.io/meezan-frontend/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
