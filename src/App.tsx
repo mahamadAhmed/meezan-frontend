@@ -1,9 +1,8 @@
-
 import { Toaster } from "@/shared/components/ui/toaster";
 import { Toaster as Sonner } from "sonner";
 import { TooltipProvider } from "@/shared/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/shared/components/theme/ThemeProvider";
 
 import Dashboard from "./pages/Dashboard";
@@ -37,10 +36,10 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
-            
+
             {/* Protected Routes */}
             <Route path="/" element={<Dashboard />} />
             <Route path="/cases" element={<Cases />} />
@@ -62,11 +61,11 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/employee-requests" element={<EmployeeRequests />} />
             <Route path="/legal-assistant" element={<LegalAssistant />} />
-            
+
             {/* Fallback */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
