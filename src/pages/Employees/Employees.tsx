@@ -62,9 +62,9 @@ const Employees = () => {
     },
     {
       id: 2,
-      name: "سارة خالد",
+      name: "ياسر خالد",
       position: "ادارة",
-      email: "sara@lawfirm.com",
+      email: "yasser@lawfirm.com",
       phone: "0555789012",
       status: "نشط",
       joinDate: "2022-03-20",
@@ -86,9 +86,9 @@ const Employees = () => {
     },
     {
       id: 4,
-      name: "فاطمة العلي",
+      name: "خالد العلي",
       position: "محاسب",
-      email: "fatima@lawfirm.com",
+      email: "khalid@lawfirm.com",
       phone: "0555901234",
       status: "نشط",
       joinDate: "2023-01-05",
@@ -184,11 +184,11 @@ const Employees = () => {
       const updatedEmployees = employees.map((emp) =>
         emp.id === selectedEmployee.id
           ? {
-              ...emp,
-              ...data,
-              address: emp.address,
-              jobTitle: data.jobTitle,
-            }
+            ...emp,
+            ...data,
+            address: emp.address,
+            jobTitle: data.jobTitle,
+          }
           : emp
       );
       setEmployees(updatedEmployees);
@@ -201,10 +201,10 @@ const Employees = () => {
   const filteredEmployees = activeFilter === "all"
     ? employees
     : employees.filter((emp) =>
-        (activeFilter === "مستقال"
-          ? emp.status === "منتهي"
-          : emp.status === activeFilter)
-      );
+    (activeFilter === "مستقال"
+      ? emp.status === "منتهي"
+      : emp.status === activeFilter)
+    );
 
   return (
     <MainLayout>
@@ -237,7 +237,7 @@ const Employees = () => {
               employee={employee}
               onEdit={() => handleEditEmployee(employee)}
               onDelete={() => handleDeleteEmployee(employee.id)}
-              onSendMessage={() => {}}
+              onSendMessage={() => { }}
             />
           ))}
         </div>

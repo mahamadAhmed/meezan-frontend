@@ -20,7 +20,7 @@ export interface Employee {
 // Get all employees
 export const getEmployees = async (): Promise<ApiResponse<Employee[]>> => {
   try {
-    const response = await apiClient.get<ApiResponse<Employee[]>>('/employees');
+    const response = await apiClient.get<ApiResponse<Employee[]>>('/users');
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -30,7 +30,7 @@ export const getEmployees = async (): Promise<ApiResponse<Employee[]>> => {
 // Get a specific employee by ID
 export const getEmployee = async (id: string | number): Promise<ApiResponse<Employee>> => {
   try {
-    const response = await apiClient.get<ApiResponse<Employee>>(`/employees/${id}`);
+    const response = await apiClient.get<ApiResponse<Employee>>(`/users/${id}`);
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -40,7 +40,7 @@ export const getEmployee = async (id: string | number): Promise<ApiResponse<Empl
 // Create a new employee
 export const createEmployee = async (data: Partial<Employee>): Promise<ApiResponse<Employee>> => {
   try {
-    const response = await apiClient.post<ApiResponse<Employee>>('/employees', data);
+    const response = await apiClient.post<ApiResponse<Employee>>('/users', data);
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -49,27 +49,27 @@ export const createEmployee = async (data: Partial<Employee>): Promise<ApiRespon
 
 // Create a new employee with profile image
 export const createEmployeeWithImage = async (
-  data: Partial<Employee>, 
+  data: Partial<Employee>,
   profileImage: File
 ): Promise<ApiResponse<Employee>> => {
   try {
     const formData = new FormData();
-    
+
     // Add all data fields to FormData
     Object.entries(data).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         formData.append(key, value.toString());
       }
     });
-    
+
     formData.append('profile_image', profileImage);
-    
-    const response = await apiClient.post<ApiResponse<Employee>>('/employees', formData, {
+
+    const response = await apiClient.post<ApiResponse<Employee>>('/users', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    
+
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -78,11 +78,11 @@ export const createEmployeeWithImage = async (
 
 // Update an existing employee
 export const updateEmployee = async (
-  id: string | number, 
+  id: string | number,
   data: Partial<Employee>
 ): Promise<ApiResponse<Employee>> => {
   try {
-    const response = await apiClient.put<ApiResponse<Employee>>(`/employees/${id}`, data);
+    const response = await apiClient.put<ApiResponse<Employee>>(`/users/${id}`, data);
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -91,33 +91,33 @@ export const updateEmployee = async (
 
 // Update an employee with profile image
 export const updateEmployeeWithImage = async (
-  id: string | number, 
-  data: Partial<Employee>, 
+  id: string | number,
+  data: Partial<Employee>,
   profileImage?: File
 ): Promise<ApiResponse<Employee>> => {
   try {
     const formData = new FormData();
-    
+
     // Add all data fields to FormData
     Object.entries(data).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         formData.append(key, value.toString());
       }
     });
-    
+
     if (profileImage) {
       formData.append('profile_image', profileImage);
     }
-    
+
     // Use PUT for update with form data
     formData.append('_method', 'PUT');
-    
-    const response = await apiClient.post<ApiResponse<Employee>>(`/employees/${id}`, formData, {
+
+    const response = await apiClient.post<ApiResponse<Employee>>(`/users/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    
+
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -127,7 +127,7 @@ export const updateEmployeeWithImage = async (
 // Delete an employee
 export const deleteEmployee = async (id: string | number): Promise<ApiResponse<null>> => {
   try {
-    const response = await apiClient.delete<ApiResponse<null>>(`/employees/${id}`);
+    const response = await apiClient.delete<ApiResponse<null>>(`/users/${id}`);
     return response.data;
   } catch (error) {
     return handleApiError(error);
@@ -136,12 +136,12 @@ export const deleteEmployee = async (id: string | number): Promise<ApiResponse<n
 
 // Update employee status
 export const updateEmployeeStatus = async (
-  id: string | number, 
+  id: string | number,
   status: 'active' | 'inactive' | 'on_leave'
 ): Promise<ApiResponse<Employee>> => {
   try {
     const response = await apiClient.patch<ApiResponse<Employee>>(
-      `/employees/${id}/status`, 
+      `/users/${id}/status`,
       { status }
     );
     return response.data;
@@ -152,12 +152,12 @@ export const updateEmployeeStatus = async (
 
 // Send message to employee
 export const sendMessageToEmployee = async (
-  id: string | number, 
+  id: string | number,
   message: string
 ): Promise<ApiResponse<any>> => {
   try {
     const response = await apiClient.post<ApiResponse<any>>(
-      `/employees/${id}/send-message`, 
+      `/users/${id}/send-message`,
       { message }
     );
     return response.data;

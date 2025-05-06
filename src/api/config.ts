@@ -30,14 +30,14 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     const { response } = error;
-    
+
     // Handle authentication errors
     if (response && response.status === 401) {
       // Clear local storage and redirect to login
       localStorage.removeItem('auth_token');
       window.location.href = '/login';
     }
-    
+
     return Promise.reject(error);
   }
 );

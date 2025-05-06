@@ -35,9 +35,7 @@ const Dashboard = () => {
           <div className="text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-200">
             {gregorianDate}
           </div>
-          <div className="text-lg md:text-xl text-primary font-medium">
-            {hijriDate}
-          </div>
+
         </div>
       </div>
 
@@ -111,7 +109,7 @@ const Dashboard = () => {
 
       {/* ChatBot Toggle & Display */}
       {!showChatBot && (
-        <button 
+        <button
           onClick={() => setShowChatBot(true)}
           className="fixed bottom-6 left-6 rounded-full w-14 h-14 shadow-lg bg-primary hover:bg-primary/90 flex items-center justify-center text-white"
         >
